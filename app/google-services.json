@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "838583130921",
+    "project_id": "safari-booking-a0af9",
+    "storage_bucket": "safari-booking-a0af9.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:838583130921:android:c50d4c15ba1c80e43af538",
+        "android_client_info": {
+          "package_name": "com.example.safaribooking"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBeAQifDyrIU_2pHx3VswX2OD-DOEHtKEE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
