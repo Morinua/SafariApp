@@ -16,12 +16,18 @@ import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.input.ImeAction
+import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -29,10 +35,15 @@ import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.example.safaribooking.R
 import com.example.safaribooking.navigation.ROUTE_SEARCH
+import com.example.safaribooking.navigation.ROUTE_SEAT
 
 @Composable
 
 fun BookingScreen(navController: NavController) {
+    var from by remember { mutableStateOf(TextFieldValue("")) }
+    var to by remember { mutableStateOf(TextFieldValue("")) }
+    var traveldate by remember { mutableStateOf(TextFieldValue("")) }
+    var context= LocalContext.current
     Column(modifier = Modifier
         .fillMaxSize()
         .background(Color.LightGray),
@@ -41,14 +52,14 @@ fun BookingScreen(navController: NavController) {
 
     {
 
-        Text(text = "Search for your favourite destiation here",
+        Text(text = "Search for your favourite destination here",
             color = Color.Blue,
             fontFamily = FontFamily.SansSerif,
             fontSize = 30.sp)
         Spacer(modifier = Modifier.height(20.dp))
 
         OutlinedTextField(
-            value = "", onValueChange = { },
+            value = from, onValueChange = { },
             label = { Text(text = "From") },
 
             keyboardOptions = KeyboardOptions . Default . copy (imeAction = ImeAction.Next),
@@ -79,28 +90,13 @@ fun BookingScreen(navController: NavController) {
         Spacer(modifier = Modifier.height(20.dp))
 
         Button(onClick = {
-            navController.navigate(ROUTE_SEARCH)
+            navController.navigate(ROUTE_SEAT)
         }, modifier = Modifier.fillMaxWidth()) {
-            Text(text = "SEARCH BUS")
+            Text(text = "BOOK SEAT")
         }
 
     }
 }
-@Composable
-fun ImageCard(painter: Painter,contentDescription:String,title:String){
-    Card (
-        modifier = Modifier.fillMaxSize(),
-        elevation = CardDefaults.cardElevation(20.dp),
-
-    )
-}
-
-@Preview(showSystemUi = true, showBackground = true)
-@Composable
-fun ImageCardPreview(){
-    ImageCard(painter = painterResource(id = R.drawable.bus1),contentDescription = "my card", title = "This is my nature picture")
-}
-
 
 
 

@@ -30,6 +30,9 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
+import com.example.safaribooking.data.AuthViewModel
+import com.example.safaribooking.navigation.ROUTE_BOOKING
+import com.example.safaribooking.navigation.ROUTE_HOME
 import com.example.safaribooking.navigation.ROUTE_LOGIN
 
 @Composable
@@ -53,7 +56,7 @@ fun  RegisterScreen(navController:NavController){
         Spacer(modifier = Modifier.height(20.dp))
 
         OutlinedTextField(
-            value = "", onValueChange = { },
+            value = email, onValueChange = {email=it},
             label = { Text(text = "Enter Email") },
 
             keyboardOptions = KeyboardOptions.Default.copy(imeAction = ImeAction.Next),
@@ -65,7 +68,7 @@ fun  RegisterScreen(navController:NavController){
         Spacer(modifier = Modifier.height(20.dp))
 
         OutlinedTextField(
-            value = "", onValueChange = {},
+            value = pass, onValueChange = {pass=it},
             label = { Text(text = "Enter password") },
             keyboardOptions = KeyboardOptions.Default.copy(imeAction = ImeAction.Next),
             modifier = Modifier
@@ -74,7 +77,7 @@ fun  RegisterScreen(navController:NavController){
         )
         Spacer(modifier = Modifier.height(20.dp))
         OutlinedTextField(
-            value = "", onValueChange = {},
+            value = confirmpass, onValueChange = {confirmpass=it},
             label = { Text(text = "Enter Confirm Pass") },
 
             keyboardOptions = KeyboardOptions.Default.copy(imeAction = ImeAction.Next),
@@ -83,6 +86,17 @@ fun  RegisterScreen(navController:NavController){
                 .padding(8.dp)
         )
         Spacer(modifier = Modifier.height(20.dp))
+        Button(onClick = {
+            val myregister= AuthViewModel(navController,context)
+            myregister.signup(email.text.trim(),pass.text.trim(),confirmpass.text.trim())
+            navController.navigate(ROUTE_BOOKING)
+
+
+
+
+        }, modifier = Modifier.fillMaxWidth()) {
+            Text(text = "Register ")
+        }
     }
 
 
